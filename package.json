@@ -1,0 +1,27 @@
+{
+  "name": "food-ordering-app",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/divC21/food-ordering-app#readme",
+  "bugs": {
+    "url": "https://github.com/divC21/food-ordering-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divC21/food-ordering-app.git"
+  },
+  "license": "ISC",
+  "author": "Diva Chauhan",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
+}
