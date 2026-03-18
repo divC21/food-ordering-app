@@ -1,0 +1,31 @@
+.primary-btn{
+    background-color: rgb(141, 15, 15);
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: 500;
+}
+
+.primary-btn:hover{
+    background-color: rgb(141, 15, 15, 0.8);
+}
+
+.secondary-btn{
+    background-color: white;
+    border: 1px solid rgb(141, 15, 15);
+    color: rgb(141, 15, 15);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.secondary-btn:hover{
+    background-color: rgb(141, 15, 15, 0.1);
+}
