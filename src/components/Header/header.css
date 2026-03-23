@@ -14,7 +14,9 @@
                 margin: 0px 10px;
                 font-size: 22px;
                 cursor: pointer;
-                color: white;
+                a{
+                    color: white;
+                }
             }
             li:hover{
                 color: white;
