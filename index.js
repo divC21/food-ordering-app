@@ -6,6 +6,7 @@ import About from "./src/components/About/About";
 import Contact from "./src/components/Contact/Contact";
 import ErrorComponent from "./src/components/ErrorComponent/ErrorComponent";
 import MainContainer from "./src/components/MainContainer/MainContainer";
+import RestaurantDetails from "./src/components/RestaurantDetails/RestaurantDetails";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const appRouter = createBrowserRouter([
@@ -24,6 +25,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantDetails />,
       },
     ],
     errorElement: <ErrorComponent />,

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import "./main-container.css";
 import Shimmer from "../Shimmer/Shimmer";
@@ -9,18 +10,18 @@ const MainContainer = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const res = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.57590&lng=77.33450&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+      "https://corsproxy.io/?https://namastedev.com/api/v1/listRestaurants",
     );
     const data = await res.json();
     const updatedData =
-      data.data.cards[4].card.card.gridElements.infoWithStyle.restaurants.map(
+      data?.data?.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
         (item) => {
           return {
             name: item.info.name,
@@ -54,6 +55,10 @@ const MainContainer = () => {
 
   const handleClearFilters = () => {
     fetchData();
+  };
+
+  const handleRestaurantDetails = (id) => {
+    navigate(`/restaurant/${id}`);
   };
 
   return (
@@ -93,6 +98,7 @@ const MainContainer = () => {
                 cuisines: res.cuisines,
                 imageId: res.imageId,
               }}
+              onClick={() => handleRestaurantDetails(res.id)}
             />
           ))
         ) : (

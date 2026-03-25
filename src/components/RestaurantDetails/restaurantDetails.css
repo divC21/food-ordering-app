@@ -1,0 +1,22 @@
+.details-container{
+    padding: 40px;
+    .res-details{
+        img{
+            width: 600px;
+            height: 350px;
+        }
+    }
+
+    .menu-details{
+        width: 70%;
+        .items{
+            display: flex;
+            justify-content: space-between;
+        }
+        img{
+            width: 200px;
+            height: 150px;
+            border-radius: 20px;
+        }
+    }
+}

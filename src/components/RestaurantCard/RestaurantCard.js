@@ -1,7 +1,7 @@
 import { IMAGE_CDN_URL } from "../../utils/constants";
 import "./card.css";
 
-const RestaurantCard = ({ resData }) => {
+const RestaurantCard = ({ resData, onClick }) => {
   const {
     name = "",
     description = "",
@@ -11,7 +11,7 @@ const RestaurantCard = ({ resData }) => {
     imageId = "",
   } = resData;
   return (
-    <div className="res-card">
+    <div className="res-card" onClick={onClick}>
       <img src={`${IMAGE_CDN_URL}${imageId}`} alt="Restaurant" />
       <h3>{name}</h3>
       <p>{description}</p>
