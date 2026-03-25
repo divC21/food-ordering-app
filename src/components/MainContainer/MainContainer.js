@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import "./main-container.css";
 import Shimmer from "../Shimmer/Shimmer";
@@ -57,9 +57,10 @@ const MainContainer = () => {
     fetchData();
   };
 
-  const handleRestaurantDetails = (id) => {
-    navigate(`/restaurant/${id}`);
-  };
+  //Navigate using useNavigate hook
+  // const handleRestaurantDetails = (id) => {
+  //   navigate(`/restaurant/${id}`);
+  // };
 
   return (
     <div className="main-container">
@@ -88,18 +89,20 @@ const MainContainer = () => {
       <div className="restaurant-container">
         {filteredRestaurants.length ? (
           filteredRestaurants.map((res) => (
-            <RestaurantCard
-              key={res.id}
-              resData={{
-                name: res.name,
-                description: res.description,
-                rating: res.rating,
-                costForTwo: res.costForTwo,
-                cuisines: res.cuisines,
-                imageId: res.imageId,
-              }}
-              onClick={() => handleRestaurantDetails(res.id)}
-            />
+            /* Navigate using LINK */
+            <Link to={`/restaurant/${res.id}`} key={res.id}>
+              <RestaurantCard
+                resData={{
+                  name: res.name,
+                  description: res.description,
+                  rating: res.rating,
+                  costForTwo: res.costForTwo,
+                  cuisines: res.cuisines,
+                  imageId: res.imageId,
+                }}
+                // onClick={() => handleRestaurantDetails(res.id)}
+              />
+            </Link>
           ))
         ) : (
           <Shimmer noOfCards={14} />
