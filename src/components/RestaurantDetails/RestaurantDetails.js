@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { IMAGE_CDN_URL } from "../../utils/constants";
+import { useParams } from "react-router-dom";
 import "./restaurantDetails.css";
 const RestaurantDetails = () => {
   const [details, setDetails] = useState(null);
-  //   const { pathname = "" } = window.location;
+  const { id } = useParams();
+  console.log(id); //to get pathname
   const pathname = "/123456";
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const RestaurantDetails = () => {
                     </div>
                     <div>
                       <img src={`${IMAGE_CDN_URL}${imageId}`} />
-                      <p>₹{price / 100}</p>
+                      <p>Rs.{price / 100}</p>
                     </div>
                   </div>
                 );
