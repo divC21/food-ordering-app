@@ -5,12 +5,15 @@ import "./main-container.css";
 import Shimmer from "../Shimmer/Shimmer";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const MainContainer = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
+  const status = useOnlineStatus();
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -63,52 +66,62 @@ const MainContainer = () => {
   // };
 
   return (
-    <div className="main-container">
-      <div className="search-container">
-        <Input
-          type="text"
-          value={searchInput}
-          placeholder="Search for restaurants..."
-          onChange={(evt) => {
-            const { value } = evt.target;
-            setSearchInput(value.toLowerCase());
-          }}
-        />
-        <Button name="Search" type="primary" onClick={handleSearch}></Button>
-        <Button
-          name="Top Rated Restaurants"
-          type="primary"
-          onClick={handleTopRatedRestaurants}
-        />
-        <Button
-          name="Clear Filters"
-          type="secondary"
-          onClick={handleClearFilters}
-        ></Button>
-      </div>
-      <div className="restaurant-container">
-        {filteredRestaurants.length ? (
-          filteredRestaurants.map((res) => (
-            /* Navigate using LINK */
-            <Link to={`/restaurant/${res.id}`} key={res.id}>
-              <RestaurantCard
-                resData={{
-                  name: res.name,
-                  description: res.description,
-                  rating: res.rating,
-                  costForTwo: res.costForTwo,
-                  cuisines: res.cuisines,
-                  imageId: res.imageId,
-                }}
-                // onClick={() => handleRestaurantDetails(res.id)}
-              />
-            </Link>
-          ))
-        ) : (
-          <Shimmer noOfCards={14} />
-        )}
-      </div>
-    </div>
+    <>
+      {status ? (
+        <div className="main-container">
+          <div className="search-container">
+            <Input
+              type="text"
+              value={searchInput}
+              placeholder="Search for restaurants..."
+              onChange={(evt) => {
+                const { value } = evt.target;
+                setSearchInput(value.toLowerCase());
+              }}
+            />
+            <Button
+              name="Search"
+              type="primary"
+              onClick={handleSearch}
+            ></Button>
+            <Button
+              name="Top Rated Restaurants"
+              type="primary"
+              onClick={handleTopRatedRestaurants}
+            />
+            <Button
+              name="Clear Filters"
+              type="secondary"
+              onClick={handleClearFilters}
+            ></Button>
+          </div>
+          <div className="restaurant-container">
+            {filteredRestaurants.length ? (
+              filteredRestaurants.map((res) => (
+                /* Navigate using LINK */
+                <Link to={`/restaurant/${res.id}`} key={res.id}>
+                  <RestaurantCard
+                    resData={{
+                      name: res.name,
+                      description: res.description,
+                      rating: res.rating,
+                      costForTwo: res.costForTwo,
+                      cuisines: res.cuisines,
+                      imageId: res.imageId,
+                    }}
+                    // onClick={() => handleRestaurantDetails(res.id)}
+                  />
+                </Link>
+              ))
+            ) : (
+              <Shimmer noOfCards={14} />
+            )}
+          </div>
+        </div>
+      ) : (
+        <h2>Looks like you are offline</h2>
+      )}
+    </>
   );
 };
 

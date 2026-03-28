@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import "./header.css";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Header = () => {
+  const status = useOnlineStatus();
   return (
     <header className="header-container">
       <div className="logo">
@@ -10,6 +12,7 @@ const Header = () => {
       <div className="right-container">
         <nav className="nav-container">
           <ul>
+            <li>Online status: {status ? "🟢" : "🔴"}</li>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -18,6 +21,9 @@ const Header = () => {
             </li>
             <li>
               <Link to="/contact">Contact</Link>
+            </li>
+            <li>
+              <Link to="/grocery">Grocery</Link>
             </li>
           </ul>
         </nav>
