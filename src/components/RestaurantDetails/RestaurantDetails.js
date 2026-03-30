@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { IMAGE_CDN_URL } from "../../utils/constants";
 import { useParams } from "react-router-dom";
-import "./restaurantDetails.css";
+
 const RestaurantDetails = () => {
   const [details, setDetails] = useState(null);
   const { id } = useParams();
@@ -33,14 +33,17 @@ const RestaurantDetails = () => {
     details?.cards[4].groupedCard.cardGroupMap.REGULAR || {};
 
   return (
-    <div className="details-container">
+    <div className="p-10">
       <div className="res-details">
         <h2>{name}</h2>
-        <img src={`${IMAGE_CDN_URL}${cloudinaryImageId}`} />
+        <img
+          className="w-150 h-80 rounded-xl"
+          src={`${IMAGE_CDN_URL}${cloudinaryImageId}`}
+        />
         <h4>{costForTwo}</h4>
         <h4>{avgRating}</h4>
       </div>
-      <div className="menu-details">
+      <div className="w-4/5">
         {cards.map((item) => {
           const { title = "", itemCards = [] } = item?.card?.card || {};
           return (
@@ -55,13 +58,16 @@ const RestaurantDetails = () => {
                   price = 0,
                 } = menu.card.info;
                 return (
-                  <div className="items" key={id}>
+                  <div className="flex justify-between" key={id}>
                     <div>
                       <h4>{name}</h4>
                       <p>{description}</p>
                     </div>
                     <div>
-                      <img src={`${IMAGE_CDN_URL}${imageId}`} />
+                      <img
+                        className="w-56 h-36 rounded-xl"
+                        src={`${IMAGE_CDN_URL}${imageId}`}
+                      />
                       <p>Rs.{price / 100}</p>
                     </div>
                   </div>

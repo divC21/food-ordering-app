@@ -1,14 +1,21 @@
-import "./button.css";
 const Button = (props) => {
   const { name, onClick, type = "primary", disabled = false } = props;
   return (
     <>
       {type === "primary" ? (
-        <button className="primary-btn" onClick={onClick} disabled={disabled}>
+        <button
+          className=" bg-red-900 text-white px-3 py-3 m-2 rounded-sm hover:bg-amber-800"
+          onClick={onClick}
+          disabled={disabled}
+        >
           {name}
         </button>
       ) : (
-        <button className="secondary-btn" onClick={onClick} disabled={disabled}>
+        <button
+          className=" bg-white text-red-900 px-3 py-3 m-2 rounded-sm border border-solid border-red-900 hover:bg-orange-100"
+          onClick={onClick}
+          disabled={disabled}
+        >
           {name}
         </button>
       )}

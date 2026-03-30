@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
-import "./main-container.css";
 import Shimmer from "../Shimmer/Shimmer";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
@@ -68,8 +67,8 @@ const MainContainer = () => {
   return (
     <>
       {status ? (
-        <div className="main-container">
-          <div className="search-container">
+        <div className="py-10">
+          <div className="flex items-center mx-10">
             <Input
               type="text"
               value={searchInput}
@@ -95,7 +94,7 @@ const MainContainer = () => {
               onClick={handleClearFilters}
             ></Button>
           </div>
-          <div className="restaurant-container">
+          <div className="flex flex-wrap gap-10">
             {filteredRestaurants.length ? (
               filteredRestaurants.map((res) => (
                 /* Navigate using LINK */

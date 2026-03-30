@@ -1,18 +1,16 @@
-import "./shimmer.css";
-
 const Shimmer = ({ noOfCards = 10 }) => {
   return (
     <>
       {Array(noOfCards)
         .fill("")
         .map((e, index) => (
-          <div className="shimmer-card" key={index}>
-            <div className="shimmer-image"></div>
-            <div className="shimmer-name"></div>
-            <div className="shimmer-name"></div>
-            <div className="shimmer-name"></div>
-            <div className="shimmer-name"></div>
-            <div className="shimmer-name"></div>
+          <div className="w-80 p-2.5" key={index}>
+            <div className="h-60 mb-2.5 bg-gray-400 rounded-xl"></div>
+            <div className="mb-2.5 bg-gray-400 h-5"></div>
+            <div className="mb-2.5 bg-gray-400 h-5"></div>
+            <div className="mb-2.5 bg-gray-400 h-5"></div>
+            <div className="mb-2.5 bg-gray-400 h-5"></div>
+            <div className="mb-2.5 bg-gray-400 h-5"></div>
           </div>
         ))}
     </>
