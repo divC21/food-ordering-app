@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { IMAGE_CDN_URL } from "../../utils/constants";
 import { useParams } from "react-router-dom";
+import Accordian from "../Accordian/Accordian";
 
 const RestaurantDetails = () => {
   const [details, setDetails] = useState(null);
@@ -35,7 +36,7 @@ const RestaurantDetails = () => {
   return (
     <div className="p-10">
       <div className="res-details">
-        <h2>{name}</h2>
+        <h2 className="text-xl font-bold my-4">{name}</h2>
         <img
           className="w-150 h-80 rounded-xl"
           src={`${IMAGE_CDN_URL}${cloudinaryImageId}`}
@@ -48,31 +49,36 @@ const RestaurantDetails = () => {
           const { title = "", itemCards = [] } = item?.card?.card || {};
           return (
             <div key={title}>
-              <h2>{title}</h2>
-              {itemCards.map((menu) => {
-                const {
-                  name = "",
-                  imageId = "",
-                  description = "",
-                  id = "",
-                  price = 0,
-                } = menu.card.info;
-                return (
-                  <div className="flex justify-between" key={id}>
-                    <div>
-                      <h4>{name}</h4>
-                      <p>{description}</p>
-                    </div>
-                    <div>
-                      <img
-                        className="w-56 h-36 rounded-xl"
-                        src={`${IMAGE_CDN_URL}${imageId}`}
-                      />
-                      <p>Rs.{price / 100}</p>
-                    </div>
+              {title ? (
+                <Accordian title={title}>
+                  <div>
+                    {itemCards.map((menu) => {
+                      const {
+                        name = "",
+                        imageId = "",
+                        description = "",
+                        id = "",
+                        price = 0,
+                      } = menu.card.info;
+                      return (
+                        <div className="flex justify-between" key={id}>
+                          <div>
+                            <h4>{name}</h4>
+                            <p className="text-slate-500">{description}</p>
+                          </div>
+                          <div>
+                            <img
+                              className="w-56 h-36 rounded-xl"
+                              src={`${IMAGE_CDN_URL}${imageId}`}
+                            />
+                            <p>Rs.{price / 100}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
+                </Accordian>
+              ) : null}
             </div>
           );
         })}
