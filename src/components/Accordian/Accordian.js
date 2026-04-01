@@ -1,24 +1,21 @@
-import { useState } from "react";
-const Accordian = ({ title, children }) => {
-  const [toggle, setToggle] = useState(true);
-
+const Accordian = ({ title, children, isOpen = false, getOpenedItem }) => {
   const toggleAccordion = () => {
-    setToggle(!toggle);
+    getOpenedItem(title, isOpen);
   };
 
   return (
     <div className="my-2">
       <button
         onClick={toggleAccordion}
-        className="w-full flex justify-between bg-gray-100 items-center p-5 m-t-1.5 font-bold text-2xl text-slate-800"
+        className="w-full flex justify-between bg-gray-100 items-center  border border-solid border-slate-100 p-5 m-t-1.5 font-bold text-2xl text-slate-800"
       >
         <span>{title}</span>
         <span className="text-slate-800 transition-transform duration-300">
-          {toggle ? "-" : "+"}
+          {isOpen ? "-" : "+"}
         </span>
       </button>
-      {toggle ? (
-        <div className="transition-all duration-300 ease-in-out p-5 border border-slate-100">
+      {isOpen ? (
+        <div className="transition-all duration-300 ease-in-out p-5 bg-slate-50">
           {children}
         </div>
       ) : null}

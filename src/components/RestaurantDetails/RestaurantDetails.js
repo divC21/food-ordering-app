@@ -5,6 +5,8 @@ import Accordian from "../Accordian/Accordian";
 
 const RestaurantDetails = () => {
   const [details, setDetails] = useState(null);
+  const [activeAccordian, setActiveAccordian] = useState("");
+  const [status, setStatus] = useState(false);
   const { id } = useParams();
   console.log(id); //to get pathname
   const pathname = "/123456";
@@ -36,11 +38,11 @@ const RestaurantDetails = () => {
   return (
     <div className="p-10">
       <div className="res-details">
-        <h2 className="text-xl font-bold my-4">{name}</h2>
-        <img
+        <h2 className="text-2xl font-bold my-4">{name}</h2>
+        {/* <img
           className="w-150 h-80 rounded-xl"
           src={`${IMAGE_CDN_URL}${cloudinaryImageId}`}
-        />
+        /> */}
         <h4>{costForTwo}</h4>
         <h4>{avgRating}</h4>
       </div>
@@ -50,7 +52,14 @@ const RestaurantDetails = () => {
           return (
             <div key={title}>
               {title ? (
-                <Accordian title={title}>
+                <Accordian
+                  title={title}
+                  isOpen={title === activeAccordian && !status}
+                  getOpenedItem={(data, status) => {
+                    setActiveAccordian(data);
+                    setStatus(status);
+                  }}
+                >
                   <div>
                     {itemCards.map((menu) => {
                       const {
@@ -63,15 +72,25 @@ const RestaurantDetails = () => {
                       return (
                         <div className="flex justify-between" key={id}>
                           <div>
-                            <h4>{name}</h4>
-                            <p className="text-slate-500">{description}</p>
+                            <h4 className="text-lg">
+                              {name}
+                              {"    "}
+                              <span className="text-slate-800 text-sm">
+                                ₹{price / 100}
+                              </span>
+                            </h4>
+                            <p className="text-slate-500 text-xs my-1">
+                              {description}
+                            </p>
                           </div>
-                          <div>
+                          <div className="relative">
                             <img
-                              className="w-56 h-36 rounded-xl"
+                              className="w-40 h-28 rounded-xl my-1.5"
                               src={`${IMAGE_CDN_URL}${imageId}`}
                             />
-                            <p>Rs.{price / 100}</p>
+                            <div className="border border-solid border-amber-100 absolute bottom-2 cursor-pointer left-14 bottom-1.5 bg-black text-amber-50 px-2 py-1 rounded-md">
+                              Add +
+                            </div>
                           </div>
                         </div>
                       );
