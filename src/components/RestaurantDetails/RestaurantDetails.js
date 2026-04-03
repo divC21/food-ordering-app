@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import { IMAGE_CDN_URL } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import Accordian from "../Accordian/Accordian";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../utils/cartSlice";
 
 const RestaurantDetails = () => {
   const [details, setDetails] = useState(null);
   const [activeAccordian, setActiveAccordian] = useState("");
   const [status, setStatus] = useState(false);
   const { id } = useParams();
-  console.log(id); //to get pathname
+  const dispatch = useDispatch();
   const pathname = "/123456";
 
   useEffect(() => {
@@ -23,6 +25,10 @@ const RestaurantDetails = () => {
       const data = await res.json();
       setDetails(data?.data);
     }
+  };
+
+  const handleAddItems = (item) => {
+    dispatch(addItem(item));
   };
 
   const {
@@ -88,7 +94,10 @@ const RestaurantDetails = () => {
                               className="w-40 h-28 rounded-xl my-1.5"
                               src={`${IMAGE_CDN_URL}${imageId}`}
                             />
-                            <div className="border border-solid border-amber-100 absolute bottom-2 cursor-pointer left-14 bottom-1.5 bg-black text-amber-50 px-2 py-1 rounded-md">
+                            <div
+                              className="border border-solid border-amber-100 absolute bottom-2 cursor-pointer left-10 bottom-1.5 bg-black text-amber-50 px-4 py-1 rounded-md"
+                              onClick={() => handleAddItems(name)}
+                            >
                               Add +
                             </div>
                           </div>
