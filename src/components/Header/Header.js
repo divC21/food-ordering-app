@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
 import UserContext from "../../utils/UserContext";
 import { useSelector } from "react-redux";
+import Button from "../Button/Button";
 
 const Header = () => {
+  const [loginStatus, setLoginStatus] = useState(false);
   const status = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
   const cartLength = useSelector((state) => state.cart.items.length);
@@ -36,8 +38,29 @@ const Header = () => {
             <Link to="/cart">Cart({cartLength})</Link>
           </li>
           <li>
-            <span>{loggedInUser}</span>
+            {loginStatus ? (
+              <Button
+                classNames="!m-0 !py-0 hover:!bg-red-900 pointer"
+                name="Logout"
+                type="primary"
+                onClick={() => {
+                  setLoginStatus(false);
+                }}
+              />
+            ) : (
+              <Button
+                classNames="!m-0 !py-0 hover:!bg-red-900 pointer"
+                name="Login"
+                type="primary"
+                onClick={() => {
+                  setLoginStatus(true);
+                }}
+              />
+            )}
           </li>
+          {/* <li>
+            <span>{loggedInUser}</span>
+          </li> */}
         </ul>
       </div>
     </header>
