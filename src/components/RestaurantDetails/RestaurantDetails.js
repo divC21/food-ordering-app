@@ -21,7 +21,7 @@ const RestaurantDetails = () => {
     const res = await fetch(
       `https://corsproxy.io/?https://namastedev.com/api/v1/listRestaurantMenu${pathname}`,
     );
-    if (res && res.status === 200) {
+    if (res) {
       const data = await res.json();
       setDetails(data?.data);
     }
@@ -35,7 +35,6 @@ const RestaurantDetails = () => {
     name = "",
     costForTwo = "",
     avgRating = "",
-    cloudinaryImageId = "",
   } = details?.cards[2]?.card?.card?.info || {};
 
   const { cards = [] } =
@@ -95,7 +94,7 @@ const RestaurantDetails = () => {
                               src={`${IMAGE_CDN_URL}${imageId}`}
                             />
                             <div
-                              className="border border-solid border-amber-100 absolute bottom-2 cursor-pointer left-10 bottom-1.5 bg-black text-amber-50 px-4 py-1 rounded-md"
+                              className="border border-solid border-amber-100 absolute bottom-2 cursor-pointer left-10 bg-black text-amber-50 px-4 py-1 rounded-md"
                               onClick={() => handleAddItems(name)}
                             >
                               Add +

@@ -10,7 +10,11 @@ const RestaurantCard = ({ resData, onClick }) => {
     imageId = "",
   } = resData;
   return (
-    <div className="w-78 border-0 p-6 rounded-xl" onClick={onClick}>
+    <div
+      data-testid="resCard"
+      className="w-78 border-0 p-6 rounded-xl"
+      onClick={onClick}
+    >
       <img
         className="rounded-xl w-80 h-56"
         src={`${IMAGE_CDN_URL}${imageId}`}

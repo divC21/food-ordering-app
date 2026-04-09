@@ -71,6 +71,7 @@ const MainContainer = () => {
           <div className="flex items-center mx-10">
             <Input
               type="text"
+              testId="searchInput"
               value={searchInput}
               placeholder="Search for restaurants..."
               onChange={(evt) => {
